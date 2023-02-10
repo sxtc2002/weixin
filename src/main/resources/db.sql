@@ -1,5 +1,3 @@
-CREATE DATABASE IF NOT EXISTS `fzu`;
-USE `fzu`;
 CREATE TABLE IF NOT EXISTS `Users` (
     `id` char(22) NOT NULL AUTO_INCREMENT,
     `qualification` boolean NOT NULL DEFAULT '0',
