@@ -1,5 +1,6 @@
 package com.tencent.wxcloudrun.controller;
 
+import com.sun.tools.javac.util.DefinedBy;
 import com.tencent.wxcloudrun.config.ApiResponse;
 import com.tencent.wxcloudrun.dto.UserRequest;
 import com.tencent.wxcloudrun.model.User;
@@ -24,6 +25,10 @@ public class UserController {
     public UserController(@Autowired UserService userService) {
         this.userService = userService;
         this.logger = LoggerFactory.getLogger(UserController.class);
+    }
+    @GetMapping(value = "/test")
+    ApiResponse test() {
+        return ApiResponse.error("test");
     }
     @GetMapping(value = "/api/user")
     ApiResponse get(@RequestBody String id) {
