@@ -42,12 +42,12 @@ public class UserController {
 
     @PostMapping(value = "/api/user")
     ApiResponse post(@RequestBody UserRequest request) {
-        logger.info("/api/user post request, action: {}, id: {}", request.getAction(), request.getUser().getId());
+        logger.info("/api/user post request, action: {}, id: {}", request.getAction(), request.getId());
         if(request.getAction().equals("insert")) {
-            userService.insertUser(request.getUser());
+            userService.insertUser(request.getId());
             return ApiResponse.ok(0);
         } else if(request.getAction().equals("update")) {
-            userService.updateUser(request.getUser());
+            userService.updateUser(request.getId());
             return ApiResponse.ok(0);
         } else {
             return ApiResponse.error("参数action错误");

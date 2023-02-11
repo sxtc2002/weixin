@@ -9,8 +9,8 @@ import java.util.ArrayList;
 @Mapper
 public interface UsersMapper {
     User getUser(@Param("id") String id);
-    void insertUser(User user);
-    void updateUser(User user);
+    void insertUser(@Param("id") String id);
+    void updateUser(@Param("id") String id);
 
     ArrayList<User> viewUser();
 }
