@@ -14,11 +14,11 @@
     </select>
     
     <insert id="insertUser" parameterType="com.tencent.wxcloudrun.model.User">
-        INSERT INTO User(`id`) VALUES (#{id})
+        INSERT INTO Users(`id`) VALUES (#{id})
     </insert>
 
     <update id="updateUser" parameterType="com.tencent.wxcloudrun.model.User">
-        UPDATE User
+        UPDATE Users
         SET qualification = 1
         WHERE id = #{id}
     </update>
