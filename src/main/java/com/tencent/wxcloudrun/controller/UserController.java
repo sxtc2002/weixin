@@ -44,8 +44,13 @@ public class UserController {
     ApiResponse post(@RequestBody UserRequest request) {
         logger.info("/api/user post request, action: {}, id: {}", request.getAction(), request.getId());
         if(request.getAction().equals("insert")) {
-            userService.insertUser(request.getId());
-            return ApiResponse.ok(0);
+            Optional<User> user = userService.getUser(request.getId());
+            if(user.isPresent()) {
+                return ApiResponse.error("用户已存在");
+            } else {
+                userService.insertUser(request.getId());
+                return ApiResponse.ok(0);
+            }
         } else if(request.getAction().equals("update")) {
             userService.updateUser(request.getId());
             return ApiResponse.ok(0);
