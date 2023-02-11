@@ -30,14 +30,15 @@ public class UserController {
         return ApiResponse.error("test");
     }
     @GetMapping(value = "/api/user")
-    ApiResponse get(@RequestBody String id) {
+    ApiResponse get(String id) {
         logger.info("/api/user get request");
         Optional<User> user = userService.getUser(id);
-        if(user.isPresent()) {
-            return ApiResponse.ok(user);
-        } else {
-            return ApiResponse.error("用户id不存在");
-        }
+        return ApiResponse.ok();
+//        if(user.isPresent()) {
+//            return ApiResponse.ok(user);
+//        } else {
+//            return ApiResponse.error("用户id不存在");
+//        }
     }
 
     @PostMapping(value = "/api/user")
