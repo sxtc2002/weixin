@@ -7,10 +7,7 @@ import com.tencent.wxcloudrun.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -26,11 +23,11 @@ public class UserController {
         this.logger = LoggerFactory.getLogger(UserController.class);
     }
     @GetMapping(value = "/test")
-    ApiResponse test() {
-        return ApiResponse.error("test");
+    ApiResponse test(@RequestHeader("x-wx-openid") String id) {
+        return ApiResponse.ok(id);
     }
     @GetMapping(value = "/api/user")
-    ApiResponse get(String id) {
+    ApiResponse get(@RequestHeader("x-wx-openid") String id) {
         logger.info("/api/user get request");
         Optional<User> user = userService.getUser(id);
         if(user.isPresent()) {
@@ -41,18 +38,18 @@ public class UserController {
     }
 
     @PostMapping(value = "/api/user")
-    ApiResponse post(@RequestBody UserRequest request) {
-        logger.info("/api/user post request, action: {}, id: {}", request.getAction(), request.getId());
+    ApiResponse post(@RequestHeader("x-wx-openid") String id, @RequestBody UserRequest request) {
+        logger.info("/api/user post request, action: {}, id: {}", request.getAction(), id);
         if(request.getAction().equals("insert")) {
-            Optional<User> user = userService.getUser(request.getId());
+            Optional<User> user = userService.getUser(id);
             if(user.isPresent()) {
                 return ApiResponse.error("用户已存在");
             } else {
-                userService.insertUser(request.getId());
+                userService.insertUser(id);
                 return ApiResponse.ok(0);
             }
         } else if(request.getAction().equals("update")) {
-            userService.updateUser(request.getId());
+            userService.updateUser(id);
             return ApiResponse.ok(0);
         } else {
             return ApiResponse.error("参数action错误");
