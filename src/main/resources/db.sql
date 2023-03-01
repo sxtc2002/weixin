@@ -1,4 +1,4 @@
-CREATE TABLE if not exists User
+CREATE TABLE if not exists Users
 (
     `id` char(50) NOT NULL,
     `join` boolean NOT NULL DEFAULT '0',
@@ -8,7 +8,7 @@ CREATE TABLE if not exists User
     `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-CREATE TABLE if not exists Administrator
+CREATE TABLE if not exists Administrators
 (
     `id` char(50) NOT NULL,
     PRIMARY KEY (`id`)
