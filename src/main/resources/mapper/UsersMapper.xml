@@ -8,7 +8,7 @@
     </resultMap>
 
     <select id="getUser" resultMap="UsersMapper" parameterType="com.tencent.wxcloudrun.model.User">
-        SELECT `id`, `qualification`, `createdAt`
+        SELECT `id`, `join`, `createdAt`
         FROM Users
         WHERE id = #{id}
     </select>
@@ -19,7 +19,7 @@
 
     <update id="updateUser" parameterType="com.tencent.wxcloudrun.model.User">
         UPDATE Users
-        SET qualification = 1
+        SET join = 1
         WHERE id = #{id}
     </update>
     <select id="viewUser" resultMap="UsersMapper" parameterType="com.tencent.wxcloudrun.model.User">
