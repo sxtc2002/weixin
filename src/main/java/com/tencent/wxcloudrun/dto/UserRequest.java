@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class UserRequest {
     private String action;
-    private boolean join;
+    private boolean ifjoin;
     private String nick;
     private String tel;
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface UsersMapper {
     User getUser(@Param("id") String id);
     void insertUser(@Param("id") String id);
-    void updateUser(@Param("id") String id, @Param("nick") String nick, @Param("tel") String tel);
+    void updateUser(@Param("id") String id, @Param("nick") String nick, @Param("tel") String tel, @Param("ifjoin") boolean ifjoin);
 
     ArrayList<User> viewUser();
 }
