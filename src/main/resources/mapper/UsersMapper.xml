@@ -3,7 +3,7 @@
 <mapper namespace="com.tencent.wxcloudrun.dao.UsersMapper">
     <resultMap id="UsersMapper" type="com.tencent.wxcloudrun.model.User">
         <id property="id" column="id" />
-        <result property="qualification" column="qualification" />
+        <result property="join" column="join" />
         <result property="createdAt" column="createdAt" javaType="java.time.LocalDateTime" />
     </resultMap>
 
