@@ -21,7 +21,7 @@
 
     <update id="updateUser" parameterType="com.tencent.wxcloudrun.model.User">
         UPDATE Users
-        SET ifjoin = #{ifjoin} and nick = #{nick} and tel = #{tel}
+        SET ifjoin = #{ifjoin}, nick = #{nick}, tel = #{tel}
         WHERE id = #{id}
     </update>
     <select id="viewUser" resultMap="UsersMapper" parameterType="com.tencent.wxcloudrun.model.User">
