@@ -49,8 +49,8 @@ public class UserController {
                 return ApiResponse.ok(0);
             }
         } else if(request.getAction().equals("update")) {
-//            userService.updateUser(id);
-            return ApiResponse.ok(request.isJoin());
+            userService.updateUser(id, request.getNick(), request.getTel());
+            return ApiResponse.ok(0);
         } else {
             return ApiResponse.error("参数action错误");
         }

@@ -4,11 +4,13 @@
     <resultMap id="UsersMapper" type="com.tencent.wxcloudrun.model.User">
         <id property="id" column="id" />
         <result property="join" column="join" />
+        <result property="nick" column="nick"/>
+        <result property="tel" column="tel"/>
         <result property="createdAt" column="createdAt" javaType="java.time.LocalDateTime" />
     </resultMap>
 
     <select id="getUser" resultMap="UsersMapper" parameterType="com.tencent.wxcloudrun.model.User">
-        SELECT `id`, `join`, `createdAt`
+        SELECT `id`, `join`, `nick`, `tel`, `createdAt`
         FROM Users
         WHERE id = #{id}
     </select>
@@ -19,7 +21,7 @@
 
     <update id="updateUser" parameterType="com.tencent.wxcloudrun.model.User">
         UPDATE Users
-        SET join = 1
+        SET join = 1, nick = #{nick}, tel = #{tel}
         WHERE id = #{id}
     </update>
     <select id="viewUser" resultMap="UsersMapper" parameterType="com.tencent.wxcloudrun.model.User">
