@@ -1,7 +1,6 @@
 CREATE TABLE if not exists Users
 (
     `id` char(50) NOT NULL,
-    `ifjoin` boolean NOT NULL DEFAULT '0',
     `hit` int NOT NULL DEFAULT '0',
     `nick` char(50),
     `tel` char(50),
