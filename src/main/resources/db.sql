@@ -12,3 +12,9 @@ CREATE TABLE if not exists Administrators
     `id` char(50) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE if not exists Prizes
+(
+    `grade` int NOT NULL,
+    `num` int NOT NULL,
+    PRIMARY KEY (`grade`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
