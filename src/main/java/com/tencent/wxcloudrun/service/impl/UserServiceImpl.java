@@ -43,6 +43,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public ArrayList<User> selectUser() {
+        return usersMapper.selectUser();
+    }
+
+    @Override
     public ArrayList<User> viewUser() {
         return usersMapper.viewUser();
     }

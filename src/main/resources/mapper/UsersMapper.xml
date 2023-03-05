@@ -39,4 +39,8 @@
     <select id="viewUser" resultMap="UsersMapper" parameterType="com.tencent.wxcloudrun.model.User">
         SELECT * FROM Users;
     </select>
+
+    <select id="selectUser" resultMap="UsersMapper" parameterType="com.tencent.wxcloudrun.model.User">
+        SELECT * FROM Users WHERE hit > 0 ORDER BY hit;
+    </select>
 </mapper>

@@ -11,5 +11,6 @@ public interface UserService {
     void updateUser(String id, String nick, String tel);
     void awardUser(String id, int hit);
     void clearUser();
+    ArrayList<User> selectUser();
     ArrayList<User> viewUser();
 }

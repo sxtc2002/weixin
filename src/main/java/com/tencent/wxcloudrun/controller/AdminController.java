@@ -66,4 +66,12 @@ public class AdminController {
         }
         return ApiResponse.ok();
     }
+    @GetMapping(value = "/api/draw/view")
+    ApiResponse viewWinners(@RequestHeader("x-wx-openid") String id) {
+        if(!verify(id)) {
+            return ApiResponse.error("没有权限");
+        }
+        ArrayList<User> users = userService.selectUser();
+        return ApiResponse.ok(users);
+    }
 }

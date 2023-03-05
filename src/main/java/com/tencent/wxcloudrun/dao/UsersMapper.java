@@ -13,5 +13,6 @@ public interface UsersMapper {
     void updateUser(@Param("id") String id, @Param("nick") String nick, @Param("tel") String tel);
     void awardUser(@Param("id") String id, @Param("hit") int hit);
     void clearUser();
+    ArrayList<User> selectUser();
     ArrayList<User> viewUser();
 }
