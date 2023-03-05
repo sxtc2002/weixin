@@ -3,23 +3,28 @@ package com.tencent.wxcloudrun.controller;
 import com.tencent.wxcloudrun.config.ApiResponse;
 import com.tencent.wxcloudrun.model.Admin;
 import com.tencent.wxcloudrun.model.Prize;
+import com.tencent.wxcloudrun.model.User;
 import com.tencent.wxcloudrun.service.AdminService;
 import com.tencent.wxcloudrun.service.PrizeService;
+import com.tencent.wxcloudrun.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 @RestController
 public class AdminController {
     final AdminService adminService;
     final PrizeService prizeService;
+    final UserService userService;
 
-    public AdminController(AdminService adminService, PrizeService prizeService) {
+    public AdminController(AdminService adminService, PrizeService prizeService, UserService userService) {
         this.adminService = adminService;
         this.prizeService = prizeService;
+        this.userService = userService;
     }
 
     private boolean verify(String id) {
@@ -42,7 +47,19 @@ public class AdminController {
             return ApiResponse.error("没有权限");
         }
         ArrayList<Prize> prizes = prizeService.viewPrize();
-
-        return ApiResponse.ok(prizes);
+        ArrayList<User> users = userService.viewUser();
+        Random random = new Random();
+        int num = 0, len = users.size();
+        boolean[] b = new boolean[len];
+        for (Prize prize: prizes) {
+            num += prize.getNum();
+        }
+        for(int i = 0, j = 0; i < num; ++i) {
+            int x = random.nextInt(len);
+            while(b[x]) x = random.nextInt(len);
+            b[x] = true;
+            userService.awardUser(users.get(x).getId(), prizes.get(j).getGrade());
+        }
+        return ApiResponse.ok();
     }
 }

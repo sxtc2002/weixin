@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void awardUser(String id, int hit) {
+        usersMapper.awardUser(id, hit);
+    }
+
+    @Override
     public ArrayList<User> viewUser() {
         return usersMapper.viewUser();
     }

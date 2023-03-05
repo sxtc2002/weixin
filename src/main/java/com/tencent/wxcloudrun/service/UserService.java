@@ -9,5 +9,6 @@ public interface UserService {
     Optional<User> getUser(String id);
     void insertUser(String id);
     void updateUser(String id, String nick, String tel);
+    void awardUser(String id, int hit);
     ArrayList<User> viewUser();
 }

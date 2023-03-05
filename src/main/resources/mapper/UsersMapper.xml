@@ -3,13 +3,14 @@
 <mapper namespace="com.tencent.wxcloudrun.dao.UsersMapper">
     <resultMap id="UsersMapper" type="com.tencent.wxcloudrun.model.User">
         <id property="id" column="id" />
+        <result property="hit" column="hit"/>
         <result property="nick" column="nick"/>
         <result property="tel" column="tel"/>
         <result property="createdAt" column="createdAt" javaType="java.time.LocalDateTime" />
     </resultMap>
 
     <select id="getUser" resultMap="UsersMapper" parameterType="com.tencent.wxcloudrun.model.User">
-        SELECT `id`, `nick`, `tel`, `createdAt`
+        SELECT `id`, `hit`, `nick`, `tel`, `createdAt`
         FROM Users
         WHERE id = #{id}
     </select>
@@ -23,6 +24,13 @@
         SET nick = #{nick}, tel = #{tel}
         WHERE id = #{id}
     </update>
+
+    <update id="awardUser" parameterType="com.tencent.wxcloudrun.model.User">
+        UPDATE Users
+        SET hit = #{hit}
+        WHERE id = #{id}
+    </update>
+
     <select id="viewUser" resultMap="UsersMapper" parameterType="com.tencent.wxcloudrun.model.User">
         SELECT * FROM Users;
     </select>
