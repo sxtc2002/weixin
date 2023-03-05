@@ -2,7 +2,7 @@ package com.tencent.wxcloudrun.controller;
 
 import com.tencent.wxcloudrun.config.ApiResponse;
 import com.tencent.wxcloudrun.model.Admin;
-import com.tencent.wxcloudrun.model.Prize;
+import com.tencent.wxcloudrun.model.Prizes;
 import com.tencent.wxcloudrun.model.User;
 import com.tencent.wxcloudrun.service.AdminService;
 import com.tencent.wxcloudrun.service.PrizeService;
@@ -46,12 +46,13 @@ public class AdminController {
         if(!verify(id)) {
             return ApiResponse.error("没有权限");
         }
-        ArrayList<Prize> prizes = prizeService.viewPrize();
+        userService.clearUser();
+        ArrayList<Prizes> prizes = prizeService.viewPrize();
         ArrayList<User> users = userService.viewUser();
         Random random = new Random();
         int num = 0, len = users.size();
         boolean[] b = new boolean[len];
-        for (Prize prize: prizes) {
+        for (Prizes prize: prizes) {
             num += prize.getNum();
         }
         for(int i = 0, j = 0; i < num; ++i) {
@@ -59,6 +60,9 @@ public class AdminController {
             while(b[x]) x = random.nextInt(len);
             b[x] = true;
             userService.awardUser(users.get(x).getId(), prizes.get(j).getGrade());
+            prizes.get(j).decNum();
+            if(prizes.get(j).getGrade() == 0)
+                j++;
         }
         return ApiResponse.ok();
     }

@@ -12,5 +12,6 @@ public interface UsersMapper {
     void insertUser(@Param("id") String id);
     void updateUser(@Param("id") String id, @Param("nick") String nick, @Param("tel") String tel);
     void awardUser(@Param("id") String id, @Param("hit") int hit);
+    void clearUser();
     ArrayList<User> viewUser();
 }

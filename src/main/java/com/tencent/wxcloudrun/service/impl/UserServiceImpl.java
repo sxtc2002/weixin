@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void clearUser() {
+        usersMapper.clearUser();
+    }
+
+    @Override
     public ArrayList<User> viewUser() {
         return usersMapper.viewUser();
     }

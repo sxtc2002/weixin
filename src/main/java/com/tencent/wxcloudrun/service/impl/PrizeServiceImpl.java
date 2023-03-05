@@ -1,7 +1,7 @@
 package com.tencent.wxcloudrun.service.impl;
 
 import com.tencent.wxcloudrun.dao.PrizesMapper;
-import com.tencent.wxcloudrun.model.Prize;
+import com.tencent.wxcloudrun.model.Prizes;
 import com.tencent.wxcloudrun.service.PrizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class PrizeServiceImpl implements PrizeService {
     }
 
     @Override
-    public ArrayList<Prize> viewPrize() {
+    public ArrayList<Prizes> viewPrize() {
         return prizesMapper.viewPrize();
     }
 

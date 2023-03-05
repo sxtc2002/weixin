@@ -25,6 +25,11 @@
         WHERE id = #{id}
     </update>
 
+    <update id="clearUser" parameterType="com.tencent.wxcloudrun.model.User">
+        UPDATE Users
+        SET hit = 0
+    </update>
+
     <update id="awardUser" parameterType="com.tencent.wxcloudrun.model.User">
         UPDATE Users
         SET hit = #{hit}
