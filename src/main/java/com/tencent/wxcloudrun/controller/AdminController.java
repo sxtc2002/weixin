@@ -61,7 +61,7 @@ public class AdminController {
             b[x] = true;
             userService.awardUser(users.get(x).getId(), prizes.get(j).getGrade());
             prizes.get(j).decNum();
-            if(prizes.get(j).getGrade() == 0)
+            if(prizes.get(j).getNum() == 0)
                 j++;
         }
         return ApiResponse.ok();
