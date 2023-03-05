@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.PrizesMapper">
+    <resultMap id="PrizesMapper" type="com.tencent.wxcloudrun.model.Prize">
+        <id property="grade" column="grade" />
+        <result property="num" column="num" />
+    </resultMap>
+
+    <select id="viewAdmin" resultMap="PrizesMapper" parameterType="com.tencent.wxcloudrun.model.Prize">
+        SELECT * FROM Prizes;
+    </select>
+</mapper>
