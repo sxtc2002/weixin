@@ -22,10 +22,6 @@ public class UserController {
         this.userService = userService;
         this.logger = LoggerFactory.getLogger(UserController.class);
     }
-    @GetMapping(value = "/test")
-    ApiResponse test(@RequestHeader("x-wx-openid") String id) {
-        return ApiResponse.ok(id);
-    }
     @GetMapping(value = "/api/user")
     ApiResponse get(@RequestHeader("x-wx-openid") String id) {
         logger.info("/api/user get request");
