@@ -51,6 +51,22 @@ public class UserController {
             return ApiResponse.error("参数action错误");
         }
     }
+    @GetMapping(value = "/api/draw/view")
+    ApiResponse viewWinners(@RequestHeader("x-wx-openid") String id) {
+        logger.info("/api/draw/view get request, id: {}", id);
+        ArrayList<User> users = userService.selectUser();
+        for (User user: users) {
+            char[] nick = user.getNick().toCharArray();
+            for(int i = 1; i < nick.length; ++i)
+                nick[i] = '*';
+            user.setNick(new String(nick));
+            char[] tel = user.getTel().toCharArray();
+            for(int i = 0; i < tel.length - 4; ++i)
+                tel[i] = '*';
+            user.setTel(new String(tel));
+        }
+        return ApiResponse.ok(users);
+    }
     @GetMapping(value = "/api/view")
     ApiResponse view() {
         ArrayList<User> users = userService.viewUser();

@@ -48,7 +48,7 @@ public class AdminController {
 
     @PostMapping(value = "/admin/draw")
     ApiResponse draw(@RequestHeader("x-wx-openid") String id) {
-        logger.info("/api/draw post request");
+        logger.info("/admin/draw post request");
         if(!verify(id)) {
             return ApiResponse.error("没有权限");
         }
@@ -74,7 +74,7 @@ public class AdminController {
     }
     @GetMapping(value = "/admin/draw/view")
     ApiResponse viewWinners(@RequestHeader("x-wx-openid") String id) {
-        logger.info("/api/draw/view get request");
+        logger.info("/admin/draw/view get request");
         if(!verify(id)) {
             return ApiResponse.error("没有权限");
         }
