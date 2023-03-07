@@ -41,12 +41,12 @@ public class AdminController {
         return false;
     }
 
-    @GetMapping(value = "/api/admin")
+    @GetMapping(value = "/admin")
     ApiResponse get(@RequestHeader("x-wx-openid") String id) {
         return ApiResponse.ok(verify(id));
     }
 
-    @PostMapping(value = "/api/draw")
+    @PostMapping(value = "/admin/draw")
     ApiResponse draw(@RequestHeader("x-wx-openid") String id) {
         logger.info("/api/draw post request");
         if(!verify(id)) {
@@ -72,7 +72,7 @@ public class AdminController {
         }
         return ApiResponse.ok();
     }
-    @GetMapping(value = "/api/draw/view")
+    @GetMapping(value = "/admin/draw/view")
     ApiResponse viewWinners(@RequestHeader("x-wx-openid") String id) {
         logger.info("/api/draw/view get request");
         if(!verify(id)) {
