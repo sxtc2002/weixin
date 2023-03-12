@@ -15,6 +15,6 @@
     </update>
     
     <select id="viewIfdraw" resultMap="PrizesMapper" parameterType="com.tencent.wxcloudrun.model.Prizes">
-        SELECT num FROM Prizes WHERE grade = 0;
+        SELECT * FROM Prizes WHERE grade = 0;
     </select>
 </mapper>

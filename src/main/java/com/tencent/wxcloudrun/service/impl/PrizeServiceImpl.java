@@ -27,8 +27,9 @@ public class PrizeServiceImpl implements PrizeService {
     }
 
     @Override
-    public boolean viewIfdraw() {
-        return prizesMapper.viewIfdraw();
+    public int viewIfdraw() {
+        ArrayList<Prizes> ifdraw = prizesMapper.viewIfdraw();
+        return ifdraw.get(0).getNum();
     }
 
 }
