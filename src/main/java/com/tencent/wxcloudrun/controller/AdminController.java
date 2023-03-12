@@ -10,10 +10,7 @@ import com.tencent.wxcloudrun.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -82,7 +79,7 @@ public class AdminController {
         return ApiResponse.ok(users);
     }
     @PostMapping(value = "/admin/ifdraw")
-    ApiResponse changeIfdraw(@RequestHeader("x-wx-openid") String id, int ifdraw) {
+    ApiResponse changeIfdraw(@RequestHeader("x-wx-openid") String id, @RequestBody int ifdraw) {
         logger.info("admin/ifdraw post request ifdraw = {}", ifdraw);
         if(!verify(id)) {
             return ApiResponse.error("没有权限");
