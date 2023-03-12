@@ -1,6 +1,7 @@
 package com.tencent.wxcloudrun.controller;
 
 import com.tencent.wxcloudrun.config.ApiResponse;
+import com.tencent.wxcloudrun.dto.IfdrawRequest;
 import com.tencent.wxcloudrun.model.Admin;
 import com.tencent.wxcloudrun.model.Prizes;
 import com.tencent.wxcloudrun.model.User;
@@ -79,12 +80,12 @@ public class AdminController {
         return ApiResponse.ok(users);
     }
     @PostMapping(value = "/admin/ifdraw")
-    ApiResponse changeIfdraw(@RequestHeader("x-wx-openid") String id, @RequestBody int ifdraw) {
-        logger.info("admin/ifdraw post request ifdraw = {}", ifdraw);
+    ApiResponse changeIfdraw(@RequestHeader("x-wx-openid") String id, @RequestBody IfdrawRequest ifdrawRequest) {
+        logger.info("admin/ifdraw post request ifdraw = {}", ifdrawRequest.getIfdraw());
         if(!verify(id)) {
             return ApiResponse.error("没有权限");
         }
-        prizeService.changeIfdraw(ifdraw);
+        prizeService.changeIfdraw(ifdrawRequest.getIfdraw());
         return ApiResponse.ok();
     }
 }
