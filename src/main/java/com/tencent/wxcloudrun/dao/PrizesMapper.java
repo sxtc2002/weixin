@@ -8,4 +8,6 @@ import java.util.ArrayList;
 @Mapper
 public interface PrizesMapper {
     ArrayList<Prizes> viewPrize();
+    void changeIfdraw(int ifdraw);
+    boolean viewIfdraw();
 }

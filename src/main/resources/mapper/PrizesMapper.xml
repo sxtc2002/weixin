@@ -7,6 +7,14 @@
     </resultMap>
 
     <select id="viewPrize" resultMap="PrizesMapper" parameterType="com.tencent.wxcloudrun.model.Prizes">
-        SELECT * FROM Prizes;
+        SELECT * FROM Prizes WHERE grade > 0;
+    </select>
+
+    <update id="changeIfdraw">
+        UPDATE Prizes SET num = #{ifdraw} WHERE grade = 0;
+    </update>
+    
+    <select id="viewIfdraw" resultMap="PrizesMapper" parameterType="com.tencent.wxcloudrun.model.Prizes">
+        SELECT num FROM Prizes WHERE grade = 0;
     </select>
 </mapper>

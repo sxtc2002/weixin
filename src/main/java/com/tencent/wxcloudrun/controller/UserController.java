@@ -3,6 +3,7 @@ package com.tencent.wxcloudrun.controller;
 import com.tencent.wxcloudrun.config.ApiResponse;
 import com.tencent.wxcloudrun.dto.UserRequest;
 import com.tencent.wxcloudrun.model.User;
+import com.tencent.wxcloudrun.service.PrizeService;
 import com.tencent.wxcloudrun.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +17,12 @@ import java.util.Optional;
 @RestController
 public class UserController {
     final UserService userService;
+    final PrizeService prizeService;
     final Logger logger;
 
-    public UserController(@Autowired UserService userService) {
+    public UserController(@Autowired UserService userService, PrizeService prizeService) {
         this.userService = userService;
+        this.prizeService = prizeService;
         this.logger = LoggerFactory.getLogger(UserController.class);
     }
     @GetMapping(value = "/api/user")
@@ -71,5 +74,10 @@ public class UserController {
     ApiResponse view() {
         ArrayList<User> users = userService.viewUser();
         return ApiResponse.ok(users);
+    }
+    @GetMapping(value = "/api/ifdraw")
+    ApiResponse viewIfdraw() {
+        logger.info("/api/ifdraw get request");
+        return ApiResponse.ok(prizeService.viewIfdraw());
     }
 }

@@ -21,4 +21,14 @@ public class PrizeServiceImpl implements PrizeService {
         return prizesMapper.viewPrize();
     }
 
+    @Override
+    public void changeIfdraw(int ifdraw) {
+        prizesMapper.changeIfdraw(ifdraw);
+    }
+
+    @Override
+    public boolean viewIfdraw() {
+        return prizesMapper.viewIfdraw();
+    }
+
 }
