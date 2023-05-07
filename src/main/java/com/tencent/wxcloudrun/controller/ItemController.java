@@ -1,7 +1,9 @@
 package com.tencent.wxcloudrun.controller;
 
 import com.tencent.wxcloudrun.config.ApiResponse;
+import com.tencent.wxcloudrun.dto.BatchRequest;
 import com.tencent.wxcloudrun.dto.ItemRequest;
+import com.tencent.wxcloudrun.model.Batch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +18,19 @@ public class ItemController {
         this.logger = LoggerFactory.getLogger(ItemController.class);
     }
     @PostMapping(value = "/api/item")
-    ApiResponse item2(@RequestHeader("x-wx-openid") String id, @RequestBody ItemRequest itemRequest) {
+    ApiResponse item(@RequestHeader("x-wx-openid") String id, @RequestBody ItemRequest itemRequest) {
         logger.info("/api/item get request, id: {}", id);
         String url = "https://api.weixin.qq.com/cgi-bin/material/get_material";
         RestTemplate restTemplate = new RestTemplate();
         String item = restTemplate.postForObject(url, itemRequest, String.class);
         return ApiResponse.ok(item);
+    }
+    @PostMapping(value = "/api/batch")
+    ApiResponse batch(@RequestHeader("x-wx-openid") String id, @RequestBody BatchRequest batchRequest) {
+        logger.info("/api/batch get request, id: {}", id);
+        String url = "https://api.weixin.qq.com/cgi-bin/material/batchget_material";
+        RestTemplate restTemplate = new RestTemplate();
+        Batch batch = restTemplate.postForObject(url, batchRequest, Batch.class);
+        return ApiResponse.ok(batch);
     }
 }
