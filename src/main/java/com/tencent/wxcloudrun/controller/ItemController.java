@@ -18,8 +18,8 @@ public class ItemController {
         paramMap.add("type", "news");
         paramMap.add("offset", "0");
         paramMap.add("count", "20");
-        Item item = restTemplate.postForObject("https://api.weixin.qq.com/cgi-bin/material/batchget_material"
-                , paramMap, Item.class);
+        String item = restTemplate.postForObject("https://api.weixin.qq.com/cgi-bin/material/batchget_material"
+                , paramMap, String.class);
         return ApiResponse.ok(item);
     }
 }
