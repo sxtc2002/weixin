@@ -15,11 +15,10 @@ public class ItemController {
     public ItemController() {
         this.logger = LoggerFactory.getLogger(ItemController.class);
     }
-
     @PostMapping(value = "/api/item")
-    ApiResponse item(@RequestHeader("x-wx-openid") String id, @RequestBody ItemRequest itemRequest) {
+    ApiResponse item2(@RequestHeader("x-wx-openid") String id, @RequestBody ItemRequest itemRequest) {
         logger.info("/api/item get request, id: {}", id);
-        String url = "https://api.weixin.qq.com/cgi-bin/material/batchget_material";
+        String url = "https://api.weixin.qq.com/cgi-bin/material/get_material";
         RestTemplate restTemplate = new RestTemplate();
         String item = restTemplate.postForObject(url, itemRequest, String.class);
         return ApiResponse.ok(item);
