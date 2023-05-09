@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class ItemRequest {
-    private int media_id;
+    private String media_id;
 }
