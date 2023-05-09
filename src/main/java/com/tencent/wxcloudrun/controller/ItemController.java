@@ -3,9 +3,12 @@ package com.tencent.wxcloudrun.controller;
 import com.tencent.wxcloudrun.config.ApiResponse;
 import com.tencent.wxcloudrun.dto.BatchRequest;
 import com.tencent.wxcloudrun.dto.ItemRequest;
-import com.tencent.wxcloudrun.model.Batch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,10 +30,14 @@ public class ItemController {
     }
     @PostMapping(value = "/api/batch")
     ApiResponse batch(@RequestHeader("x-wx-openid") String id, @RequestBody BatchRequest batchRequest) {
-        logger.info("/api/batch get request, id: {}", id);
+        logger.info("/api/item get request, id: {}", id);
         String url = "https://api.weixin.qq.com/cgi-bin/material/batchget_material";
+        MultiValueMap<String, Object> paramMap = new LinkedMultiValueMap<>();
+        paramMap.add("type", batchRequest.getType());
+        paramMap.add("offset", batchRequest.getOffset());
+        paramMap.add("count", batchRequest.getCount());
         RestTemplate restTemplate = new RestTemplate();
-        Batch batch = restTemplate.postForObject(url, batchRequest, Batch.class);
-        return ApiResponse.ok(batch);
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, paramMap, String.class);
+        return ApiResponse.ok(responseEntity.getBody());
     }
 }
